@@ -1,0 +1,67 @@
+*
+{
+    box-sizing:border-box;
+}
+
+.container-box
+{
+    width:50%;
+    margin:0 auto;
+    text-align:center;
+    border:1px solid black;
+}
+
+.container-box .row-1,.container-box .row-2,.container-box .row-3
+{
+    display:flex;
+    justify-content: space-around;
+    flex-wrap:wrap;
+    flex-direction:row;
+    border:1px solid black;
+    padding:10px;
+}
+
+.container-box .row-1
+{
+    background-color: green;
+    color:white;
+}
+
+.container-box .row-1 div
+{
+    border:1px solid white;
+    border-radius:10px;
+    padding:5px;
+    height:300px;
+    text-align:center;
+    flex:1;
+}
+
+.container-box .row-2 div
+{
+    border:1px solid black;
+    padding:2px;
+}
+
+
+.container-box .row-2 div button
+{
+    border: 1px solid black;
+    padding:10px;
+}
+
+.container-box .row-3 table,th,td
+{
+    border:1px solid black;
+
+}
+
+
+
+/* For the height of the cards */
+.container-box .row-1 img
+{
+    height:80px;
+    width: 60px;
+    padding:5px;
+}

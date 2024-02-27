@@ -1,0 +1,27 @@
+*
+{
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+}
+
+ul
+{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap:wrap;
+    flex-direction: row;
+    color:blue;
+    background-color: red;
+    margin:30px;
+    padding:2px;
+    height:8 0px;
+    z-index:auto;
+}
+ul li
+{
+    list-style: none;
+    padding:50px;
+    margin:0 23px;
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link href="styles.css" rel="stylesheet" />
+      <title>Library App</title>
+      <!-- This is the library app for the Odin Project implemented using concepts of classes,objects,constructors and localStorage -->
+    </head>
+    <body>
+        
+    <div class="outer-box ">
+
+        <!-- Pop up form -->
+        <div class="pop-up-screen hide">
+            <div class="cross">
+                <img src="cancel_icon.svg">
+            </div>
+            <!-- Pop up for field-not-filled -->
+            <div class="pop-up-tab">
+                <div class="input-section">
+                    <form>
+                        <h1 id='popup_title'>Add New Book</h1>
+                        <div>
+                            <label>Title</label>
+                            <input type='text' autocomplete='off'  name='title'class='input' placeholder='Atomic Habits'></input>
+                        </div>
+                        
+                        <div>
+                            <label >Author</label>
+                            <input type='text' autocomplete='off' name='author' class='input' placeholder='James Clear'></input>
+                        </div>
+
+                        <div>
+                            <label>Pages</label>
+                            <input type='number' autocomplete='off' name='pages' class='input' placeholder='335'></input>
+                        </div>
+
+                        <div>
+                            <label>Read</label>
+                            <input type='checkbox' autocomplete='off' name='read' id='input_read' class='input'></input>
+                        </div>
+
+                        <div>
+                            <input id='submit' name='checkbox' type='submit' class='input'></input>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- For upper header -->
+        <div class="header">
+            <div class="header_left">
+                <h1>Library Management</h1>
+            </div>
+            <div class="header_center"></div>
+            <div class="header_right">
+                <a href="">Login</a>
+            </div>
+        </div>
+
+
+        <!-- Box for add-icon-->
+        <div class="add-box">
+            <span id="add_icon"><img src="add_icon.png "></span>
+            <span id="add_book">Add Book</span>
+        </div>
+
+
+        <!-- Box for Library cards/display cards -->
+        <div class="Library-section"> 
+            <!-- <div class="cards">
+                    <div class="data-title">Angels and Demons</div>
+                    <div class="data-author">Dan Brown</div>
+                    <div class="data-pages">3278 pages</div>
+            </div> -->
+        </div> 
+
+        <!-- For footer -->
+        <footer>
+            <div class="footer-content">
+                <h4>Prasses Khadka</h4>
+                <p>This is my implementation of Library Management for The Odin Project using Classes and Objects and localStorage as to store the data</p>
+                <h4>Pursuing Full Stack Development</h4>
+            </div>
+            <!-- Facebook id or whatever -->
+            <div class="footer-right"></div>
+        </footer>
+    </div>
+
+
+    <script src="index.js"></script>
+  </body>
+</html>

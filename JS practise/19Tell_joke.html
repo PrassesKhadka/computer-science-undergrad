@@ -1,0 +1,43 @@
+<!-- Tell me a joke
+
+elem.innerHTML is used to populate a div with HTML Search online about this method and create a website with a div tag containing a random joke given an array of jokes Use Math.random and fetch jokes from the internet(Use any website to create the array).Your website should show a random joke on every reload.Min length of your jokes array should be 10 -->
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <title>Tell me a joke</title>
+</head>
+<style>
+    *
+    {
+        margin:10px;
+        padding: 10px;
+        border:1px solid black;
+    }
+    .container-xxl
+    {
+        text-align:center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+</style>
+<body>
+    <div class="container-xxl">
+        <button id="button" class="btn btn-primary btn-lg">Generate Joke</button>
+    </div>
+    <div class="appear_joke">
+
+    </div>
+    <script src="19Tell_joke.js"></script>
+</body>
+</html>
+
+

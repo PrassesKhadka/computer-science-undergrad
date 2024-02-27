@@ -1,0 +1,464 @@
+Javascript Objects Cheatsheet
+
+1. Update a Property of an Object
+#
+Use the = operator:
+
+    let object = {
+        'myName' : {
+            'FirstName' : 'Name',
+            'SecondName' : 'Surname'
+        },
+        'myAge' : 1043
+    }
+
+    // Updates myAge to 2043
+    object.myAge = 2043
+2. Turn an Object's Keys into an Array
+#
+Use keys():
+
+    let object = {
+        'myName' : 'Name',
+        'myAge' : 1043
+    }
+
+    // Returns [ 'myName', 'myAge' ];
+    let keys = Object.keys(object);
+3. Turn an Object's Values into an Array
+#
+Use values():
+
+    let object = {
+        'myName' : 'Name',
+        'myAge' : 1043
+    }
+
+    // Returns [ 'Name', 1043 ];
+    let values = Object.values(object);
+4. Turn Array or Map sets into an Object
+#
+Use fromEntries:
+
+    let arrSets = [ ['myName', 'Name'], ['myAge', 1043] ]
+
+    /* Returns {
+        'myName' : 'Name',
+        'myAge' : 1043
+    } */
+    let generateObject = Object.fromEntries(arrSets);
+5. Shallow Clone an Object
+#
+Use assign() or ...:
+
+    let object = {
+        'myName' : 'Name',
+        'myAge' : 1043
+    }
+
+    // Creates a copy of object, which we can edit separately
+    let newObject = Object.assign({}, object);
+
+    // Creates a copy of object, which we can edit separately
+    let anotherClone =  { ...object };
+6. Deep Clone an Object with only variables
+#
+Use JSON.parse(JSON.stringify()):
+
+    let object = {
+        'myName' : {
+            'FirstName' : 'Name',
+            'SecondName' : 'Surname'
+        },
+        'myAge' : 1043
+    }
+
+    // Creates a copy of object, which we can edit separately
+    let newObject = JSON.parse(JSON.stringify(object));
+    newObject.myName.FirstName = 'Hello';
+    console.log(newObject, object);
+    /*
+    Returns {
+      myAge: 1043,
+      myName: {
+        FirstName: "Hello",
+        SecondName: "Surname"
+      }
+    }, {
+      myAge: 1043,
+      myName: {
+        FirstName: "Name",
+        SecondName: "Surname"
+      }
+    } */
+7. Merge two objects into the original variable
+#
+Use assign():
+
+    let object = { 'myName' : 'Name' }
+    let objectTwo = { 'myAge' : 1043 }
+    Object.assign(object, objectTwo);
+
+    console.log(object, objectTwo);
+    /* Returns {
+        myAge: 1043,
+        myName: "Name"
+    }, {
+        myAge: 1043
+    } */
+8. Merge two objects into a new variable
+#
+Use ....
+
+    let object = { 'myName' : 'Name' }
+    let objectTwo = { 'myAge' : 1043 }
+    
+    let newObject = { ...object, ...objectTwo }
+
+    console.log(object, newObject);
+    /* Returns {
+        myName: "Name"
+    }, {
+        myName: "Name",
+        myAge: 1043
+    } */
+Note: if you merge two objects with ..., and there are duplicate keys (i.e. both have myAge), the second Object will overwrite the first.
+
+9. Prevent new items being added to an object, but allow previous items to be changed
+#
+Use preventExtensions():
+
+    let object = {
+        'myName' : {
+            'FirstName' : 'Name',
+            'SecondName' : 'Surname'
+        },
+        'myAge' : 1043
+    }
+
+    Object.preventExtensions(object);
+
+    // Throws a TypeError
+    object.myLocation = '123 Fake Street';
+10. Prevent any changes to an object
+#
+Use freeze():
+
+    let object = {
+        'myName' : {
+            'FirstName' : 'Name',
+            'SecondName' : 'Surname'
+        },
+        'myAge' : 1043
+    }
+
+    Object.freeze(object);
+
+    // Throws a TypeError
+    object.myLocation = '123 Fake Street';
+    // Throws a TypeError
+    object.myAge = 2043
+11. Turn Object into a String
+#
+Use JSON.stringify():
+
+    let object = {
+        'myName' : {
+            'FirstName' : 'Name',
+            'SecondName' : 'Surname'
+        },
+        'myAge' : 1043
+    }
+
+    // Returns {"myName":{"FirstName":"Name","SecondName":"Surname"},"myAge":1043}
+    console.log(JSON.stringify(object))
+12. Turn String into an Object
+#
+Use JSON.parse():
+
+    let stringObject = '{"myName":{"FirstName":"Name","SecondName":"Surname"},"myAge":1043}';
+
+    /* Returns {
+        'myName' : {
+            'FirstName' : 'Name',
+            'SecondName' : 'Surname'
+        },
+        'myAge' : 1043
+    } */
+    console.log(JSON.parse(object))
+13. Check if Object has a property
+#
+Use hasOwnProperty():
+
+    let object = {
+        'myName' : {
+            'FirstName' : 'Name',
+            'SecondName' : 'Surname'
+        },
+        'myAge' : 1043
+    }
+
+    // Returns true
+    console.log(object.hasOwnProperty('myName'))
+14. Make a Property of an Object Unwritable so you can't change it
+#
+Use defineProperty() and change writable:
+
+    let object = {
+        'myName' : {
+            'FirstName' : 'Name',
+            'SecondName' : 'Surname'
+        },
+        'myAge' : 1043
+    }
+
+    Object.defineProperty(object, 'myAge', {
+        writable: false,
+    });
+
+    // object.myAge remains 1043
+    object.myAge = 2043;
+15. Ignore certain properties when using a for loop
+#
+Use defineProperty() and change enumerable. If we set enumerable to false, that item will be ignored in forEach loops.
+
+    let object = {
+        'myName' : {
+            'FirstName' : 'Name',
+            'SecondName' : 'Surname'
+        },
+        'myAge' : 1043
+    }
+
+    Object.defineProperty(object, 'myAge', {
+        enumerable: false,
+    });
+
+    // Returns only 'myAge'
+    Object.keys(object).forEach(function(item) {
+        console.log(item);
+    });
+16. Convert Object to Array sets
+#
+Use entries():
+
+    let object = {
+        'myName' : 'Name',
+        'myAge' : 1043
+    }
+
+    // Returns [ [ 'myName', 'Name' ], [ 'myAge', 1043 ]];
+    let entries = Object.entries(object);
+
+How to do Everything with Javascript Arrays
+
+1. Find Index of an Element by Value
+#
+Use indexOf:
+
+    let arr1 = [ 'potato', 'banana', 'ravioli', 'carrot' ];
+    
+    // Returns 1
+    console.log(arr1.indexOf('banana'));
+
+    // Returns -1 since not found
+    console.log(arr1.indexOf('beetroot')); 
+2. Delete at Index
+#
+Use splice():
+
+    let arr1 = [ 'potato', 'banana', 'ravioli', 'carrot' ];
+    
+    // Returns [ 'banana', 'ravioli', 'carrot' ], since potato has index 0.
+    arr1.splice(0, 1);
+    console.log(arr1);
+3. Delete at Index by Value
+#
+Use splice() and indexOf:
+
+    let arr1 = [ 'potato', 'banana', 'ravioli', 'carrot' ];
+    let itemIndex = arr1.indexOf('ravioli');
+
+    // Returns [ 'potato', 'banana', 'carrot' ], since ravioli has an index of 2
+    arr1.splice(itemIndex, 1);
+    console.log(arr1);
+4. Get the last element of an array
+#
+Use arr.length() - 1:
+
+    let arr1 = [ 'potato', 'banana', 'ravioli', 'carrot' ];
+    
+    // Returns carrot
+    console.log(arr1[arr1.length - 1]);
+5. Insert at Index
+#
+Use splice():
+
+    let arr1 = [ 'potato', 'banana', 'ravioli', 'carrot' ];
+
+    // Inserts broccoli at position 2, after deleting 0 items
+    arr1.splice(2, 0, 'broccoli');
+    
+    // Returns [ 'potato', 'banana', 'ravioli', 'brccoli', 'carrot' ]
+    console.log(arr1);
+6. Remove the last element of the array
+#
+Use pop():
+
+    let arr1 = [ 1, 2, 3, 4, 5, 6 ];
+    
+    // Returns 6
+    console.log(arr1.pop()); 
+    
+    // Returns [ 1, 2, 3, 4, 5 ] - last element is removed
+    console.log(arr1);
+7. Change all values of an array in the same way
+#
+Use map() :
+
+    let arr1 = [ 1, 2, 3, 4, 5, 6 ];
+    
+    let newArr = arr1.map(function(arrElement) {
+        return arrElement + 3;
+    })
+
+    // ES6 version for modern browsers and NodeJS
+    let anotherVersion = arr1.map( el => el + 3);
+    
+    // Returns [ 4, 5, 6, 7, 8, 9 ] for both
+    console.log(newArr);
+    console.log(anotherVersion);
+8. Turn a string, map, or set into an array
+#
+Use Array.from():
+
+    let newSet = new Set([ 'orange', 'apple', 'potato', 'spinach' ]);
+    let newMap = new Map([ 'orange', 'apple', 'potato', 'spinach' ]);
+    let newString = 'apple';
+    
+    console.log(Array.from(newSet)); // Returns [ 'orange', 'apple', 'potato', 'spinach' ]
+    console.log(Array.from(newMap)); // Returns [ 'orange', 'apple', 'potato', 'spinach' ]
+    console.log(Array.from(newString)); // Returns [ 'a', 'p', 'p', 'l', 'e' ]
+9. Check if it is an array
+#
+Use Array.isArray() :
+
+    let arr1 = [ 'orange', 'apple', 'potato', 'spinach' ];
+    let obj1 = { myKey: "myValue" }
+    
+    console.log(Array.isArray(arr1)); // Returns true
+    console.log(Array.isArray(obj1)); // Returns false
+10. Check every element in an Array
+#
+Use forEach :
+
+    let arr1 = [ 'orange', 'apple', 'potato', 'spinach' ];
+
+    arr1.forEach(function(item) {
+        console.log(item); // Returns each array item individually
+    });
+11. Merge two arrays
+#
+Use ... or concat:
+
+    let arr1 = [ 'orange', 'apple' ];
+    let arr2 = [ 'potato', 'spinach' ];
+
+    // For legacy browsers (ES5);
+    // Returns [ 'orange', 'apple', 'potato', 'spinach' ]; 
+    let someArray = arr1.concat(object);
+    
+    // For modern Javascript (ES6/NodeJS)
+    // Returns [ 'orange', 'apple', 'potato', 'spinach' ]; 
+    let someOtherArray = [ ...arr1, ...arr2 ];
+12. Turn object names into array
+#
+Use Object.keys:
+
+    let object = { 
+        name1: "value",
+        name2: "value",
+        name3: "value"
+    };
+
+    // Returns [ 'name1', 'name2', 'name3' ]; 
+    let array = Object.keys(object);
+13. Turn object values into arrays
+#
+Use Object.values:
+
+    let object = { 
+        name1: "value",
+        name2: "value",
+        name3: "value"
+    };
+
+    // Returns [ 'value', 'value', 'value' ]; 
+    let array = Object.values(object);
+14. Reverse an Array
+#
+Use reverse():
+
+    let arr1 = [ 'potato', 'banana', 'carrot' ];
+
+    arr1.reverse();
+    
+    // Returns [ 'carrot', 'banana', 'potato' ]
+    console.log(arr1);
+15. Sum all Elements in an Array
+#
+Use reduce():
+
+    let arr1 = [ 1, 2, 3, 4, 5 ];
+
+    // For legacy browsers
+    let getTotal = arr1.reduce(function (accumulator, currentNumber) {
+        return accumulator + currentNumber
+    });
+
+    // ES6 for modern browsers and NodeJS
+    let theTotal = arr1.reduce((accumulator, currentNumber) => accumulator + currentNumber);
+    
+    // Returns 15
+    console.log(getTotal);
+16. Add an Elements to the end of an array
+#
+Use push():
+
+    let arr1 = [ 'banana', 'potato' ];
+
+    arr1.push('broccoli');
+
+    // Returns [ 'banana', 'potato', 'broccoli' ]
+    console.log(arr1);
+17. Check if every element of an array passes a test
+#
+Use every():
+
+    let arr1 = [ 1, 2, 3, 4, 5, 6, 7 ];
+
+    // Will return true and console log 'great'
+    if(arr1.every(value => value < 10)) {
+        console.log('great!')
+    }
+
+const checkWinner=(boxIndex)=>{
+        const winConditions = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6],
+        ];
+        // Returns boolean if true then either X or O wins the game 
+        return winConditions.filter((element)=>element.includes(boxIndex))
+        .some((possibleCombination)=>
+            possibleCombination.every((index)=>
+                gameBoard.getSign_fromArray(index)===getCurrentPlayerSign()
+                )
+            )
+        
+    }

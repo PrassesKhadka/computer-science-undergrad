@@ -1,0 +1,94 @@
+/* #For Challenge 1 */
+.container-1
+{
+    border:1px solid red;
+    padding:10px;
+    margin:5px auto;
+    width:75%;
+    text-align: center;
+}
+
+.flex-box-container-1
+{
+    display:flex;
+    border:1px solid black;
+    padding:10px;
+    justify-content: space-around;
+    flex-wrap:wrap;
+    flex-direction:row;
+}
+
+.flex-box-container-1 div
+{
+    padding:10px;
+    border:1px solid black;
+}
+
+#flex-box-result
+{
+    color:red;
+    border:1px solid black;
+    border-radius: 999px;
+}
+
+
+/* #For challenge 2 */
+.flex-box-container-1 img
+{
+    width:30%;
+    padding:1px;
+    margin:10px;
+    border:1px solid black;
+    border-radius: 9px;
+    box-shadow: 0px 0px 5px 1px blue;
+}
+
+/* #For challenge 3  */
+#rock
+{
+    background-color:red;
+    color:white;
+}
+#rock:hover
+{
+    box-shadow:0px 0px 5px 1px blue;
+    cursor:pointer;
+}
+
+
+#paper
+{
+    background-color:yellow;
+    color:red;
+}
+#paper:hover
+{
+    box-shadow:0px 0px 5px 1px blue;
+    cursor:pointer;
+}
+
+
+#scissor
+{
+    background-color:green;
+    color:yellow;
+}
+
+#scissor:hover
+{
+    box-shadow:0px 0px 5px 1px blue;
+    cursor:pointer;
+}
+
+/* Challenge 4:Buttons change color */
+#buttons 
+{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: center;
+    align-items: center;
+}
+#buttons .divbox
+{
+    padding:20px;
+}
